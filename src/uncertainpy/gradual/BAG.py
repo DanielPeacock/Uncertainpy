@@ -126,7 +126,72 @@ class BAG:
                     support.supported.name,
                     support.supported.initial_weight,
                 )
-                new_bag.add_attack(supporter, supported, attack.weight)
+                new_bag.add_attack(supporter, supported, support.weight)
+
+        return new_bag
+
+    def remove_attack(self, attack):
+        new_bag = BAG()
+
+        for arg_name in self.arguments:
+            new_arg = Argument(arg_name, self.arguments[arg_name].initial_weight)
+            new_bag.arguments[arg_name] = new_arg
+
+        for a in self.attacks:
+            if a != attack:
+                attacker = Argument(
+                    a.attacker.name,
+                    a.attacker.initial_weight,
+                )
+                attacked = Argument(
+                    a.attacked.name,
+                    a.attacked.initial_weight,
+                )
+                new_bag.add_attack(attacker, attacked, a.weight)
+
+        for support in self.supports:
+            supporter = Argument(
+                support.supporter.name,
+                support.supporter.initial_weight,
+            )
+            supported = Argument(
+                support.supported.name,
+                support.supported.initial_weight,
+            )
+            new_bag.add_attack(supporter, supported, support.weight)
+
+        return new_bag
+
+    def remove_support(self, support):
+        new_bag = BAG()
+
+        for arg_name in self.arguments:
+            new_arg = Argument(arg_name, self.arguments[arg_name].initial_weight)
+            new_bag.arguments[arg_name] = new_arg
+
+        for s in self.supports:
+            if s != support:
+                supporter = Argument(
+                    s.supporter.name,
+                    s.supporter.initial_weight,
+                )
+                supported = Argument(
+                    s.supported.name,
+                    s.supported.initial_weight,
+                )
+                new_bag.add_attack(supporter, supported, s.weight)
+
+        for attack in self.attacks:
+            attacker = Argument(
+                attack.attacker.name,
+                attack.attacker.initial_weight,
+            )
+            attacked = Argument(
+                attack.attacked.name,
+                attack.attacked.initial_weight,
+            )
+            new_bag.add_attack(attacker, attacked, attack.weight)
+
         return new_bag
 
     def __str__(self) -> str:
