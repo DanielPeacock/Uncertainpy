@@ -1,4 +1,5 @@
 import math
+import warnings
 
 
 class MLPBasedInfluence:
@@ -11,8 +12,15 @@ class MLPBasedInfluence:
 
         if weight == 1:
             return 1
+        
+        try:
 
-        return 1 / (1 + math.exp(-math.log(weight / (1 - weight)) - aggregate))
+            return 1 / (1 + math.exp(-math.log(weight / (1 - weight)) - aggregate))
+        except OverflowError:
+            warnings.warn(
+                "Overflow error in compute_strength. Returning 0.",
+            )
+            return 0
 
     def __str__(self) -> str:
         return __class__.__name__
