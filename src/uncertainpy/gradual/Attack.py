@@ -14,7 +14,7 @@ class Attack:
         return self.weight
 
     def __repr__(self) -> str:
-        return f"Attack({self.attacker}, {self.attacked}, weight={self.weight})"
+        return f"Attack({self.attacker.name}, {self.attacked.name}, weight={self.weight::.3f})"
 
     def __str__(self) -> str:
-        return f"Attack by {self.attacker} to {self.attacked} with weight {self.weight}"
+        return f"Attack by {self.attacker.name} to {self.attacked.name} with weight {self.weight::.3f}"
