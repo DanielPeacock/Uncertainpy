@@ -14,9 +14,9 @@ class Support:
         return self.weight
 
     def __repr__(self) -> str:
-        return f"Support({self.supporter.name}, {self.supported.name}, weight={self.weight::.3f})"
+        return f"Support({self.supporter.name}, {self.supported.name}, weight={self.weight:.3f})"
 
     def __str__(self) -> str:
         return (
-            f"Support by {self.supporter.name} to {self.supported.name} with weight {self.weight::.3f}"
+            f"Support by {self.supporter.name} to {self.supported.name} with weight {self.weight:.3f}"
         )
